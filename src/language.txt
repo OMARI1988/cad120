@@ -1,0 +1,65 @@
+pick (Head-cup),Head near cup then Head touch cup
+place (Head-cup),Head touch cup then Head near cup
+pick (Rhand-cup),RH near cup then RH touch cup
+place (Rhand-cup),RH touch cup then RH near cup
+pick (Lhand-cup),LH near cup then LH touch cup
+place (Lhand-cup),LH touch cup then LH near cup
+pick (Rhand-cloth),RH near cloth then RH touch cloth
+place (Rhand-cloth),RH touch cloth then RH near cloth
+pick (Lhand-cloth),LH near cloth then LH touch cloth
+place (Lhand-cloth),LH touch cloth then LH near cloth
+pick (Rhand-microwave),RH near microwave then RH touch microwave
+place (Rhand-microwave),RH touch microwave then RH near microwave
+pick (Lhand-microwave),LH near microwave then LH touch microwave
+place (Lhand-microwave),LH touch microwave then LH near microwave
+pick (Rhand-plate),RH near plate then RH touch plate
+place (Rhand-plate),RH touch plate then RH near plate
+pick (Lhand-plate),LH near plate then LH touch plate
+place (Lhand-plate),LH touch plate then LH near plate
+pick (Rhand-bowl),RH near bowl then RH touch bowl
+place (Rhand-bowl),RH touch bowl then RH near bowl
+pick (Lhand-bowl),LH near bowl then LH touch bowl
+place (Lhand-bowl),LH touch bowl then LH near bowl
+pick (Rhand-milk),RH near milk then RH touch milk
+place (Rhand-milk),RH touch milk then RH near milk
+pick (Lhand-milk),LH near milk then LH touch milk
+place (Lhand-milk),LH touch milk then LH near milk
+pick (Rhand-medcinebox),RH near medcinebox then RH touch medcinebox
+place (Rhand-medcinebox),RH touch medcinebox then RH near medcinebox
+pick (Lhand-medcinebox),LH near medcinebox then LH touch medcinebox
+place (Lhand-medcinebox),LH touch medcinebox then LH near medcinebox
+pick (Rhand-book),RH near book then RH touch book
+place (Rhand-book),RH touch book then RH near book
+pick (Lhand-book),LH near book then LH touch book
+place (Lhand-book),LH touch book then LH near book
+pick (Rhand-box),RH near box then RH touch box
+place (Rhand-box),RH touch box then RH near box
+pick (Lhand-box),LH near box then LH touch box
+place (Lhand-box),LH touch box then LH near box
+pick (microwave-cloth),microwave near cloth then microwave touch cloth
+place (microwave-cloth),microwave touch cloth then microwave near cloth
+END
+
+examples
+head near phone then head touch phone
+head touch phone then head near phone
+head near cup then head touch cup
+head touch cup then head near cup
+
+yellow near green then yellow touch green
+yellow touch green then yellow near green
+head is near the cup then head is touching the cup then head is near the cup 
+
+the yellow object is touch the green object and the green cylinder is touching the blue box and blue touches the yellow pyramid after that blue is near the yellow object then yellow is touching the blue box
+yellow touch green and yellow touch blue and green touch blue
+yellow touch green
+
+
+the yellow object is touching the green object and the green cylinder is touching the blue box and blue touchs the yellow pyramid after that blue is near the yellow object then yellow is touching the blue box
+
+the yellow object is touching the green object and the green cylinder is touching the blue box and blue touchs the yellow pyramid
+
+yellow far green then yellow near green then yellow touch green
+
+yellow near green and yellow touch blue and green touch blue then blue near yellow then blue touch yellow
+

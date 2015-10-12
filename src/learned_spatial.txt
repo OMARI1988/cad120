@@ -1,0 +1,6 @@
+0,touch,very close
+1,near,close
+2,far
+END
+
+

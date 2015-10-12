@@ -1,0 +1,20 @@
+Head,head
+RH,right hand
+LH,left hand
+cup,mug
+cloth
+microwave
+plate
+bowl
+milk
+remote
+medcinebox
+book
+box
+END
+
+
+object0,blue,blue object,blue box,box
+object1,green,green object,green cylinder,cylinder
+object2,yellow,yellow object,yellow pyramid,pyramid,yellow triangle,triangle
+
