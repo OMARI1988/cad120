@@ -89,7 +89,29 @@ if __name__ == '__main__':
         image_data_dir_path = '/home/omari/Datasets/CAD120/RGBD_images/Subject'+person+'_rgbd_images/'
         for activity in activity_list:
             for person_id_counter in range(len(person_id_list[person][activity])):
-                f = open('/home/omari/Python/cad120/src/QSR_data/person'+person+'/'+activity.split('/')[0]+'_'+person_id_list[person][activity][person_id_counter]+'.txt', 'r')
-                for count,line in enumerate(f):
-                    print count,line
-                f.close()
+                f_qsr = open('/home/omari/Python/cad120/src/QSR_data/person'+person+'/'+activity.split('/')[0]+'_'+person_id_list[person][activity][person_id_counter]+'.txt', 'r')
+                f_act1 = open('/home/omari/Python/cad120/src/Level1_act_data/person'+person+'/'+activity.split('/')[0]+'_'+person_id_list[person][activity][person_id_counter]+'.txt', 'w')
+                for count,line in enumerate(f_qsr):
+                    Act1 = ['0']
+                    if count==0:
+                        f_act1.write(line)
+                    else:
+                        header = line.split(':')[0]
+                        data = line.split(':')[1].split('\n')[0].split(',')
+                        # print data
+                        for n in range(len(data)-1):
+                            d1 = data[n]
+                            d2 = data[n+1]
+                            if d1 == '1' and d2 == '0':
+                                Act1.append('1')        # put down
+                            elif d1 == '0' and d2 == '1':
+                                Act1.append('2')        # pick up
+                            else:
+                                Act1.append('0')
+                        Act = ''
+                        for n in range(len(data)-1):
+                            Act+=Act1[n]+','
+                        Act += Act1[-1]
+                        f_act1.write(header+':'+Act+'\n')
+                f_qsr.close()
+                f_act1.close()
