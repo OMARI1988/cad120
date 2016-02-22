@@ -43,19 +43,19 @@ def Direction_calc(A,B):
 
 #-------------------------------------------------------------------------------------#
 def QSR(Head_msg,RH_msg,LH_msg,x_world_msg,y_world_msg,z_world_msg,Names):
-    if Head_msg != []:
-	window = len(Head_msg[1,:])
-	window_filter = 8
-	n = len(Names)
-	n_qsr = np.sum(range(n))					# number of qsrs (n is the number of objects + skeleton joints u have)
-    	QSR_vector = np.zeros(shape=(n_qsr, window), dtype=int)  	# initilize the QSR matrix actual one
-    	Dir_vector = np.zeros(shape=(n, n), dtype=str)  		# initilize the direction matrix
-	# initilize the filter 
+	if Head_msg != []:
+		window = len(Head_msg[1,:])
+		window_filter = 8
+		n = len(Names)
+		n_qsr = np.sum(range(n))					# number of qsrs (n is the number of objects + skeleton joints u have)
+		QSR_vector = np.zeros(shape=(n_qsr, window), dtype=int)  	# initilize the QSR matrix actual one
+		Dir_vector = np.zeros(shape=(n, n), dtype=str)  		# initilize the direction matrix
+	# initilize the filter
 	A = {}
 	A[0] = Head_msg
 	A[1] = RH_msg
 	A[2] = LH_msg
-	
+
 	for i in range(len(x_world_msg)):
 		obj_msg = np.zeros(shape=(3,window), dtype=int)
 		obj_msg[0,:] = x_world_msg[i,:]
@@ -65,30 +65,33 @@ def QSR(Head_msg,RH_msg,LH_msg,x_world_msg,y_world_msg,z_world_msg,Names):
 
 	#print QSR_vector
 	for k in range(window):
-    	    counter = 0
-    	    for i in range(n):
-	    	for j in range(i+1,n):
-		     	varr,Q = features_calc(A[i][:,k],A[j][:,k])
-			Dir_vector[i,j] = Direction_calc(A[i][:,k],A[j][:,k])
-			Dir_vector[j,i] = Direction_calc(A[j][:,k],A[i][:,k])
-			if Q == 'touch':
-				QSR_vector[counter,k] = 0
-			if Q == 'near':
-				QSR_vector[counter,k] = 1
-			if Q == 'far':
-				QSR_vector[counter,k] = 2
-			counter +=1
+		counter = 0
+		for i in range(n):
+			for j in range(i+1,n):
+				varr,Q = features_calc(A[i][:,k],A[j][:,k])
+				# Dir_vector[i,j] = Direction_calc(A[i][:,k],A[j][:,k])
+				# Dir_vector[j,i] = Direction_calc(A[j][:,k],A[i][:,k])
+				if Q == 'touch':
+					QSR_vector[counter,k] = 0
+				if Q == 'near':
+					QSR_vector[counter,k] = 1
+				if Q == 'far':
+					QSR_vector[counter,k] = 2
+				counter +=1
 
 
 	for i in range(counter-1):
-		    l = QSR_vector[i,0]
-		    change = 0
-		    for k in range(1,window):
+		l = QSR_vector[i,0]
+		change = 0
+		for k in range(1,window):
 			change +=1
 			if l != QSR_vector[i,k]:
-			    l = QSR_vector[i,k]
-		    	    if change < 6:
-				QSR_vector[i,k-6:k] = np.repeat(QSR_vector[i,k-6], 6)
-			    change = 0
+				l = QSR_vector[i,k]
+				if change < 6:
+					if k>6:
+						QSR_vector[i,k-6:k] = np.repeat(QSR_vector[i,k-6], 6)
+					# else:
+					# 	QSR_vector[i,k-change:k] = np.repeat(QSR_vector[i,k-change], change)
+				change = 0
 
 	return QSR_vector
