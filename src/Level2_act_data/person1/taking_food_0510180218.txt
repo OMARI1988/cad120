@@ -1,0 +1,13 @@
+Head,RH,LH,microwave,cup
+RH,LH:approach,27
+RH,LH:depart,52
+RH,LH:approach,158
+RH,LH:depart,169
+RH,LH:approach,275
+RH,LH:depart,376
+RH,LH:approach,390
+RH,microwave:approach,56
+RH,microwave:depart,145
+RH,microwave:approach,175
+RH,microwave:depart,275
+RH,cup:depart,280

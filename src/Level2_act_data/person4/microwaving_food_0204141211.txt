@@ -1,0 +1,16 @@
+Head,RH,LH,microwave,cup
+Head,cup:approach,310
+Head,cup:depart,351
+RH,LH:depart,70
+RH,LH:approach,331
+RH,microwave:approach,164
+RH,microwave:depart,290
+RH,microwave:approach,300
+RH,microwave:depart,331
+RH,cup:approach,161
+RH,cup:depart,310
+LH,microwave:approach,70
+LH,microwave:depart,159
+microwave,cup:depart,290
+microwave,cup:approach,300
+microwave,cup:depart,310

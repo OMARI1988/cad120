@@ -1,0 +1,14 @@
+Head,RH,LH,box
+RH,LH:approach,33
+RH,LH:depart,122
+RH,LH:approach,185
+RH,LH:depart,215
+RH,LH:approach,249
+RH,LH:depart,264
+RH,box:approach,41
+RH,box:depart,108
+RH,box:approach,216
+RH,box:depart,229
+LH,box:depart,106
+LH,box:approach,119
+LH,box:depart,181

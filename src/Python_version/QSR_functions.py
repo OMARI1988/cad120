@@ -80,7 +80,8 @@ def QSR(Head_msg,RH_msg,LH_msg,x_world_msg,y_world_msg,z_world_msg,Names):
 				counter +=1
 
 
-	for i in range(counter-1):
+	for i in range(counter):
+		# print QSR_vector[i,:]
 		l = QSR_vector[i,0]
 		change = 0
 		for k in range(1,window):
@@ -88,10 +89,13 @@ def QSR(Head_msg,RH_msg,LH_msg,x_world_msg,y_world_msg,z_world_msg,Names):
 			if l != QSR_vector[i,k]:
 				l = QSR_vector[i,k]
 				if change < 6:
+					# print i,k
 					if k>6:
 						QSR_vector[i,k-6:k] = np.repeat(QSR_vector[i,k-6], 6)
 					# else:
 					# 	QSR_vector[i,k-change:k] = np.repeat(QSR_vector[i,k-change], change)
 				change = 0
+		# print QSR_vector[i,:]
+		# print '---------'
 
 	return QSR_vector

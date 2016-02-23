@@ -15,14 +15,9 @@ if __name__ == '__main__':
     #-------------- File Path -------------------#
     activity_list = ['arranging_objects/', 'cleaning_objects/', 'having_meal/', 'making_cereal/', 'microwaving_food/', 'taking_food/', 'taking_medicine/']#, 'unstacking_objects/']
 
-    #super_activity_list = ['cleaning/','cleaning/','having_meal/','having_meal/','having_meal/','nothing/','cleaning/','having_meal/','taking_medicine/','cleaning/']
-
-    #
-    # daily_list =['taking_medicine/','nothing/','nothing/','arranging_objects/','unstacking_objects/','stacking_objects/','cleaning_objects/','nothing/','making_cereal/','microwaving_food/','taking_food/','having_meal/']
-
     person_id_list = {}
     person_id_list['1'] = {}
-    person_id_list['1']['arranging_objects/'] = ['0510175431','0510175554','0510175411']
+    person_id_list['1']['arranging_objects/'] = ['0510175411','0510175554','0510175431']
     person_id_list['1']['cleaning_objects/'] = ['0510181236','0510181310','0510181415']
     person_id_list['1']['having_meal/'] = ['0510182019','0510182057','0510182137']
     person_id_list['1']['making_cereal/'] = ['1204142055','1204142227','1204142500','1204142616']
@@ -89,8 +84,8 @@ if __name__ == '__main__':
     cx = 319.5  # optical center x
     cy = 239.5  # optical center y
 
-    person_id_counter = 4
-    for person in ['5']:
+    person_id_counter = 1
+    for person in ['1']:
         skeleton_data_dir_path = '/home/omari/Datasets/CAD120/annotations/Subject'+person+'_annotations/'
         image_data_dir_path = '/home/omari/Datasets/CAD120/RGBD_images/Subject'+person+'_rgbd_images/'
         for activity in activity_list:
@@ -226,3 +221,5 @@ if __name__ == '__main__':
                         f.write(L_names[a1]+','+L_names[a2]+':'+qsrs+'\n')
                         count += 1
                 f.close()
+                # break
+            # break

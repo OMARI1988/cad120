@@ -1,0 +1,14 @@
+Head,RH,LH,microwave,bowl
+RH,LH:depart,28
+RH,LH:approach,526
+RH,LH:depart,548
+RH,microwave:approach,104
+RH,microwave:depart,125
+RH,microwave:approach,142
+RH,microwave:depart,168
+RH,microwave:approach,193
+RH,microwave:depart,404
+RH,bowl:approach,159
+RH,bowl:depart,188
+RH,bowl:approach,212
+microwave,bowl:approach,229

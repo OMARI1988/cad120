@@ -1,0 +1,6 @@
+Head,RH,LH,book
+RH,LH:depart,79
+RH,book:depart,127
+LH,book:depart,80
+LH,book:approach,127
+LH,book:depart,232

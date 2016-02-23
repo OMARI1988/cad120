@@ -84,7 +84,7 @@ if __name__ == '__main__':
     cx = 319.5  # optical center x
     cy = 239.5  # optical center y
 
-    for person in ['1']:
+    for person in ['1','3','4','5']:
         skeleton_data_dir_path = '/home/omari/Datasets/CAD120/annotations/Subject'+person+'_annotations/'
         image_data_dir_path = '/home/omari/Datasets/CAD120/RGBD_images/Subject'+person+'_rgbd_images/'
         for activity in activity_list:

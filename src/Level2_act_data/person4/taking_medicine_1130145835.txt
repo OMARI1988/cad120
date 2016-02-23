@@ -1,0 +1,17 @@
+Head,RH,LH,medcinebox,cup
+Head,RH:approach,351
+Head,RH:depart,381
+Head,LH:approach,447
+Head,LH:depart,503
+Head,cup:approach,448
+Head,cup:depart,501
+RH,LH:approach,17
+RH,LH:depart,222
+RH,LH:approach,228
+RH,LH:depart,298
+RH,medcinebox:depart,343
+RH,medcinebox:approach,388
+LH,medcinebox:approach,21
+LH,medcinebox:depart,298
+LH,cup:depart,21
+LH,cup:approach,298

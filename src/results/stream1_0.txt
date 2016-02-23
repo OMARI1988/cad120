@@ -1,0 +1,16 @@
+Ground_Truth
+arranging_objects:0,306
+cleaning_objects:306,899
+having_meal:899,1398
+making_cereal:1398,1918
+microwaving_food:1918,2566
+taking_food:2566,2970
+taking_medicine:2970,3441
+Results
+taking_food:2593,2956
+arranging_objects:4,234
+microwaving_food:1961,2545
+making_cereal:1515,1911
+taking_medicine:2979,3369
+having_meal:941,1370
+cleaning_objects:338,895

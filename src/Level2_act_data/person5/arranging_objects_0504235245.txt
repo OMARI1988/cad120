@@ -1,0 +1,3 @@
+Head,RH,LH,box
+RH,box:approach,56
+RH,box:depart,330

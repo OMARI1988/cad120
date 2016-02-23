@@ -1,0 +1,15 @@
+Head,RH,LH,microwave,box
+RH,LH:depart,45
+RH,microwave:approach,150
+RH,microwave:depart,324
+RH,microwave:approach,411
+RH,microwave:depart,421
+RH,microwave:approach,430
+RH,microwave:depart,582
+RH,box:approach,250
+RH,box:depart,400
+RH,box:approach,500
+RH,box:depart,582
+microwave,box:approach,250
+microwave,box:depart,325
+microwave,box:approach,500

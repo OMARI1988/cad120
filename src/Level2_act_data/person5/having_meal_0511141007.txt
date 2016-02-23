@@ -1,0 +1,15 @@
+Head,RH,LH,cup
+Head,RH:approach,56
+Head,RH:depart,167
+Head,RH:approach,520
+Head,RH:depart,616
+Head,LH:approach,306
+Head,LH:depart,412
+Head,LH:approach,700
+Head,LH:depart,788
+Head,cup:approach,334
+Head,cup:depart,408
+Head,cup:approach,701
+Head,cup:depart,779
+LH,cup:depart,2
+LH,cup:approach,28
