@@ -120,7 +120,7 @@ if __name__ == '__main__':
                 Histograms[activity].append(A)
     # print Histograms
 
-    for person in ['5']:
+    for person in ['1']:
         for s in range(3):
             f_Stream1 = open('/home/omari/Python/cad120/src/Long_streams/compressed_stream'+person+'_'+str(s)+'.txt', 'r')
             f_Stream2 = open('/home/omari/Python/cad120/src/results/stream'+person+'_'+str(s)+'.txt', 'w')
@@ -152,7 +152,7 @@ if __name__ == '__main__':
                     for activity in activity_list:
                         for hist in Histograms[activity]:
                             HH = Histogram-hist
-                            if np.sum(np.abs(HH)) == 0:
+                            if np.sum(np.abs(HH)) < 20:
                                 f1 = f+c1
                                 f_Stream2.write(activity.split('/')[0]+':'+actual_frames[f]+','+actual_frames[f1]+'\n')
                                 print '-------',activity,actual_frames[f],actual_frames[f1]

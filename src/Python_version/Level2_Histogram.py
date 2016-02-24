@@ -109,7 +109,7 @@ if __name__ == '__main__':
     KEYS_NAMES+= key+'-approach,'+key+'-depart\n'
 
 
-    for person in ['1','3','4','5']:
+    for person in ['3','4','5']:
         for activity in activity_list:
             f_Hist = open('/home/omari/Python/cad120/src/Level2_act_data/Histogram'+person+'/'+activity.split('/')[0]+person+'.txt', 'w')
             f_Hist.write(KEYS_NAMES)
@@ -138,7 +138,7 @@ if __name__ == '__main__':
     for activity in activity_list:
         f_Hist = open('/home/omari/Python/cad120/src/Level2_act_data/Histogram/'+activity.split('/')[0]+'.txt', 'w')
         f_Hist.write(KEYS_NAMES)
-        for person in ['1','3','4','5']:
+        for person in ['3','4','5']:
             f_H = open('/home/omari/Python/cad120/src/Level2_act_data/Histogram'+person+'/'+activity.split('/')[0]+person+'.txt', 'r')
             for count,line in enumerate(f_H):
                 if count>0:

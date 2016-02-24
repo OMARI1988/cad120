@@ -62,9 +62,9 @@ if __name__ == '__main__':
     person_id_list['5']['taking_medicine/'] = ['0126143115','0126143251','0126143431']
     #person_id_list['5']['unstacking_objects/'] = ['1130151154','1130151500','1130151710']
 
-
+    IMG = {}
     results = []
-    for person in ['1','3','4','5']:
+    for person in ['1']:
         for s in range(3):
             RE = {}
             GT = {}
@@ -80,35 +80,51 @@ if __name__ == '__main__':
                     RE[line.split(':')[0]] = [int(data[0]),int(data[1])]
             for key in GT:
                 L1 = GT[key][1]-GT[key][0]
-                L2 = RE[key][1]-RE[key][0]
-                results.append(float(L2)/float(L1))
+                if RE[key][0] < GT[key][1] and RE[key][1] > GT[key][0]:
+                    if RE[key][0] >= GT[key][0]:
+                        L2_1 = RE[key][0]
+                    if RE[key][0] < GT[key][0]:
+                        L2_1 = GT[key][0]
+                    if RE[key][1] <= GT[key][1]:
+                        L2_2 = RE[key][1]
+                    if RE[key][1] > GT[key][1]:
+                        L2_2 = GT[key][1]
+                    L2 = L2_2-L2_1
+                    results.append(float(L2)/float(L1))
             f_Stream1.close()
             f_Stream2.close()
-    print np.sum(results)/len(results)
 
-    print RE
-    print GT
+            f = 0
+            for key in GT:
+                if GT[key][1]>f:
+                    f=GT[key][1]
+            img = np.zeros((800,f,3),dtype=np.uint8)+255
+
+            N = 7
+            HSV_tuples = [(x*1.0/N, 1.0, 0.9) for x in range(N)]
+            RGB = map(lambda x: colorsys.hsv_to_rgb(*x), HSV_tuples)
+            # print RGB_tuples
+
+            colors = {}
+            for t,key in enumerate(GT):
+                colors[key] = [int(RGB[t][0]*255), int(RGB[t][1]*255), int(RGB[t][2]*255)]
+
+            for key in GT:
+                img[0:395,GT[key][0]:GT[key][1],:] = colors[key]
+
+            for key in RE:
+                img[405:800,RE[key][0]:RE[key][1],:] = colors[key]
+            IMG[s] = img
     f = 0
-    for key in GT:
-        if GT[key][1]>f:
-            f=GT[key][1]
-    img = np.zeros((200,f,3),dtype=np.uint8)+255
-
-    N = 7
-    HSV_tuples = [(x*1.0/N, 1.0, 0.9) for x in range(N)]
-    RGB = map(lambda x: colorsys.hsv_to_rgb(*x), HSV_tuples)
-    # print RGB_tuples
-
-    colors = {}
-    for t,key in enumerate(GT):
-        colors[key] = [int(RGB[t][0]*255), int(RGB[t][1]*255), int(RGB[t][2]*255)]
-
-    for key in GT:
-        img[0:95,GT[key][0]:GT[key][1],:] = colors[key]
-
-    for key in RE:
-        img[105:200,RE[key][0]:RE[key][1],:] = colors[key]
-
+    for i in IMG:
+        f += IMG[i].shape[1]
+    img = np.zeros((800,f,3),dtype=np.uint8)+255
+    f = 0
+    for i in IMG:
+        img[:,f:f+IMG[i].shape[1],:] = IMG[i]
+        f += IMG[i].shape[1]
     cv2.imshow('results',img)
     cv2.imwrite('/home/omari/Python/cad120/src/results/results.png',img)
     cv2.waitKey(1000)
+
+    print np.sum(results)/len(results)

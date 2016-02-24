@@ -10,6 +10,7 @@ Results
 arranging_objects:0,288
 microwaving_food:3109,3442
 taking_food:3533,4027
+taking_food:3546,4047
 taking_medicine:4121,4742
 cleaning_objects:395,1025
 having_meal:1059,2202
