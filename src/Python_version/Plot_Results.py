@@ -15,7 +15,7 @@ import colorsys
 if __name__ == '__main__':
 
     #-------------- File Path -------------------#
-    activity_list = ['arranging_objects/', 'cleaning_objects/', 'having_meal/', 'making_cereal/', 'microwaving_food/', 'taking_food/', 'taking_medicine/']#, 'unstacking_objects/']
+    activity_list = ['arranging_objects/', 'cleaning_objects/', 'having_meal/', 'making_cereal/', 'microwaving_food/', 'taking_medicine/']#, 'unstacking_objects/']
 
     person_id_list = {}
     person_id_list['1'] = {}
@@ -63,13 +63,14 @@ if __name__ == '__main__':
     #person_id_list['5']['unstacking_objects/'] = ['1130151154','1130151500','1130151710']
 
     IMG = {}
+    RE_data_f = {}
+    GT_data_f = {}
     results = []
     for person in ['1']:
         for s in range(3):
             RE = {}
             GT = {}
             f_Stream1 = open('/home/omari/Python/cad120/src/results/stream'+person+'_'+str(s)+'.txt', 'r')
-            f_Stream2 = open('/home/omari/Python/cad120/src/results/results_stream'+person+'_'+str(s)+'.txt', 'w')
             for count,line in enumerate(f_Stream1):
                 line = line.split('\n')[0]
                 if count < 8 and count > 0:
@@ -80,25 +81,25 @@ if __name__ == '__main__':
                     RE[line.split(':')[0]] = [int(data[0]),int(data[1])]
             for key in GT:
                 L1 = GT[key][1]-GT[key][0]
-                if RE[key][0] < GT[key][1] and RE[key][1] > GT[key][0]:
-                    if RE[key][0] >= GT[key][0]:
-                        L2_1 = RE[key][0]
-                    if RE[key][0] < GT[key][0]:
-                        L2_1 = GT[key][0]
-                    if RE[key][1] <= GT[key][1]:
-                        L2_2 = RE[key][1]
-                    if RE[key][1] > GT[key][1]:
-                        L2_2 = GT[key][1]
-                    L2 = L2_2-L2_1
-                    results.append(float(L2)/float(L1))
+                if key in RE:
+                    if RE[key][0] < GT[key][1] and RE[key][1] > GT[key][0]:
+                        if RE[key][0] >= GT[key][0]:
+                            L2_1 = RE[key][0]
+                        if RE[key][0] < GT[key][0]:
+                            L2_1 = GT[key][0]
+                        if RE[key][1] <= GT[key][1]:
+                            L2_2 = RE[key][1]
+                        if RE[key][1] > GT[key][1]:
+                            L2_2 = GT[key][1]
+                        L2 = L2_2-L2_1
+                        results.append(float(L2)/float(L1))
             f_Stream1.close()
-            f_Stream2.close()
 
             f = 0
             for key in GT:
                 if GT[key][1]>f:
                     f=GT[key][1]
-            img = np.zeros((800,f,3),dtype=np.uint8)+255
+            img = np.zeros((1600,f,3),dtype=np.uint8)+255
 
             N = 7
             HSV_tuples = [(x*1.0/N, 1.0, 0.9) for x in range(N)]
@@ -106,25 +107,55 @@ if __name__ == '__main__':
             # print RGB_tuples
 
             colors = {}
+            Val = {}
             for t,key in enumerate(GT):
                 colors[key] = [int(RGB[t][0]*255), int(RGB[t][1]*255), int(RGB[t][2]*255)]
+                Val[key] = t+1
+            colors['taking_food'] = colors['microwaving_food']
+            Val['taking_food'] = Val['microwaving_food']
 
+            GT_data = np.zeros((f))
             for key in GT:
-                img[0:395,GT[key][0]:GT[key][1],:] = colors[key]
+                img[0:790,GT[key][0]:GT[key][1],:] = colors[key]
+                GT_data[GT[key][0]:GT[key][1]] = Val[key]
 
+            RE_data = np.zeros((f))
             for key in RE:
-                img[405:800,RE[key][0]:RE[key][1],:] = colors[key]
-            IMG[s] = img
-    f = 0
-    for i in IMG:
-        f += IMG[i].shape[1]
-    img = np.zeros((800,f,3),dtype=np.uint8)+255
-    f = 0
-    for i in IMG:
-        img[:,f:f+IMG[i].shape[1],:] = IMG[i]
-        f += IMG[i].shape[1]
-    cv2.imshow('results',img)
-    cv2.imwrite('/home/omari/Python/cad120/src/results/results.png',img)
-    cv2.waitKey(1000)
+                img[810:1600,RE[key][0]:RE[key][1],:] = colors[key]
+                RE_data[RE[key][0]:RE[key][1]] = Val[key]
 
-    print np.sum(results)/len(results)
+            if s == 0:
+                img[:,0:10,:] = [0,0,0]
+            if s == 2:
+                img[:,f-10:f,:] = [0,0,0]
+
+            img[0:10,:,:] = [0,0,0]
+            img[1590:1600,:,:] = [0,0,0]
+            RE_data_f[s] = RE_data
+            GT_data_f[s] = GT_data
+            IMG[s] = img
+        f = 0
+        for i in IMG:
+            f += IMG[i].shape[1]
+        img = np.zeros((1600,f,3),dtype=np.uint8)+255
+        f = 0
+        for i in IMG:
+            img[:,f:f+IMG[i].shape[1],:] = IMG[i]
+            f += IMG[i].shape[1]
+        cv2.imshow('results',img)
+        cv2.imwrite('/home/omari/Python/cad120/src/results/results_'+person+'.png',img)
+        cv2.waitKey(1000)
+
+        f_Stream2 = open('/home/omari/Python/cad120/src/results/results_stream'+person+'_'+str(s)+'.txt', 'w')
+        GT = []
+        RE = []
+        for i in RE_data_f:
+            for j in GT_data_f[i]:
+                GT.append(int(j))
+            for j in RE_data_f[i]:
+                RE.append(int(j))
+        print RE
+
+        print len(GT)
+
+        print np.sum(results)/len(results)
