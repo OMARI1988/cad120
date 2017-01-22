@@ -66,7 +66,7 @@ if __name__ == '__main__':
     RE_data_f = {}
     GT_data_f = {}
     results = []
-    for person in ['1']:
+    for person in ['1','3','4','5']:
         for s in range(3):
             RE = {}
             GT = {}
@@ -154,8 +154,27 @@ if __name__ == '__main__':
                 GT.append(int(j))
             for j in RE_data_f[i]:
                 RE.append(int(j))
-        print RE
+        print len(RE)
+        print '*******************'
+        # computing precision
+        true_po = 0.0
+        false_po = 0.0
+        for i in range(len(GT_data)):
+            if GT_data[i]-RE_data[i] == 0:
+                true_po+=1.0
+            if GT_data[i]-RE_data[i] != 0:
+                if RE_data[i] != 0:
+                    false_po+=1.0
+        print 'precision'
+        print true_po
+        print false_po
+        pre = true_po/(true_po+false_po)
+        print true_po/(true_po+false_po)
 
-        print len(GT)
+        # computing recall
+        print 'recall'
+        rec = true_po/len(GT_data)
+        print true_po/len(GT_data)
 
-        print np.sum(results)/len(results)
+        print 'f1'
+        print 2.0*(pre*rec)/(pre+rec)

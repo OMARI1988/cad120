@@ -122,6 +122,7 @@ if __name__ == '__main__':
 
     for person in ['1']:
         for s in range(3):
+            print person,s
             f_Stream1 = open('/home/omari/Python/cad120/src/Long_streams/compressed_stream'+person+'_'+str(s)+'.txt', 'r')
             f_Stream2 = open('/home/omari/Python/cad120/src/results/stream'+person+'_'+str(s)+'.txt', 'w')
             f_Stream2.write('Ground_Truth\n')
@@ -155,7 +156,8 @@ if __name__ == '__main__':
                             if np.sum(np.abs(HH)) < 20:
                                 f1 = f+c1
                                 f_Stream2.write(activity.split('/')[0]+':'+actual_frames[f]+','+actual_frames[f1]+'\n')
-                                print '-------',activity,actual_frames[f],actual_frames[f1]
+                                #print '-------',activity,actual_frames[f],actual_frames[f1]
+
 
             f_Stream1.close()
             f_Stream2.close()
